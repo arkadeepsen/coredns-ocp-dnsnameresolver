@@ -10,12 +10,9 @@ set -euo pipefail
 
 PLUGIN_PATH=$(readlink -f "$(dirname "$0")/..")
 
-# Get current branch name. If the current branch name does not match
-# the pattern "release-*", then use master branch.
 BRANCH_TAG=$(git rev-parse --abbrev-ref HEAD)
-if [[ "${BRANCH_TAG}" != release-* ]]
-then
-    BRANCH_TAG="master"
+if [[ "${BRANCH_TAG}" != release-* ]]; then
+    BRANCH_TAG="main"
 fi
 
 # Create a temporary directory for cloning coredns repo.
@@ -34,7 +31,7 @@ echo "Cloning from ${COREDNS_URL}"
 git clone "${COREDNS_URL}"
 cd "${BASE_PATH}"/coredns
 echo "Checking out branch/tag ${BRANCH_TAG}"
-git checkout ${BRANCH_TAG}
+git checkout "${BRANCH_TAG}"
 
 # Add the "ocp_dnsnameresolver" plugin to the cloned coredns repo.
 "${PLUGIN_PATH}"/hack/add-plugin.sh "${BASE_PATH}"/coredns "${PLUGIN_PATH}"
