@@ -147,11 +147,8 @@ GOLANGCI_LINT = $(LOCALBIN)/golangci-lint-$(GOLANGCI_LINT_VERSION)
 
 ## Tool Versions
 KUSTOMIZE_VERSION ?= v5.3.0
-CONTROLLER_TOOLS_VERSION ?= v0.14.0
-# setup-envtest latest now requires Go >= 1.25. Pin to a commit that still
-# supports Go 1.24.x so CI builders can install the tool without upgrading the
-# toolchain.
-ENVTEST_VERSION ?= v0.0.0-20250911081535-42a14a36c13b
+CONTROLLER_TOOLS_VERSION ?= v0.20.0
+ENVTEST_VERSION ?= latest
 GOLANGCI_LINT_VERSION ?= v1.54.2
 
 .PHONY: kustomize
